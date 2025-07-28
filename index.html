@@ -10,26 +10,16 @@
       font-family: Arial, sans-serif;
       color: white;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') no-repeat center center;
+      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') no-repeat center center fixed;
       background-size: cover;
-      z-index: -2;
     }
 
     .overlay {
-      position: fixed;
+      position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 0;
     }
 
     .container {
@@ -73,8 +63,10 @@
       cursor: pointer;
     }
 
-    .card.show { transform: scale(1); opacity: 1; }
-    .card:hover { transform: scale(1.03); }
+    .card.show {
+      transform: scale(1);
+      opacity: 1;
+    }
 
     .card img {
       width: 100%;
@@ -97,6 +89,13 @@
       color: #ccc;
     }
 
+    .neon-hover:hover {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8),
+                  0 0 30px rgba(0, 255, 255, 0.6),
+                  0 0 45px rgba(0, 255, 255, 0.4);
+      transform: scale(1.03);
+    }
+
     footer {
       margin-top: 50px;
       text-align: center;
@@ -112,7 +111,7 @@
     <h1>NNK Share Script</h1>
 
     <div class="card-grid">
-      <div class="card" onclick="location.href='share-dahood.html'">
+      <div class="card neon-hover" onclick="location.href='share-dahood.html'">
         <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood">
         <div class="card-text">
           <h3>🔫 dahood Script</h3>
@@ -120,7 +119,7 @@
         </div>
       </div>
 
-      <div class="card" onclick="location.href='share-ink.html'">
+      <div class="card neon-hover" onclick="location.href='share-ink.html'">
         <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink game">
         <div class="card-text">
           <h3>ink game Script (đã fix)</h3>
@@ -128,7 +127,7 @@
         </div>
       </div>
 
-      <div class="card" onclick="alert('Script này chưa ra mắt!')">
+      <div class="card neon-hover" onclick="alert('Script này chưa ra mắt!')">
         <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt">
         <div class="card-text">
           <h3>🚧 Script Mới</h3>
