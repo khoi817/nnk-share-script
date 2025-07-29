@@ -52,29 +52,48 @@
       margin: auto;
     }
 
-    .card {
-      background: rgba(0, 0, 0, 0.6);
+    /* Viền neon cầu vồng động */
+    .rainbow-glow {
+      position: relative;
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      transform: scale(0.95);
-      opacity: 0;
-      transition: 0.6s ease;
+      padding: 2px; /* khoảng cách viền */
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 1400% 1400%;
+      animation: rainbow-border 8s linear infinite;
       cursor: pointer;
+      overflow: hidden;
     }
 
-    .card.show {
-      transform: scale(1);
-      opacity: 1;
+    .rainbow-glow > .card-inner {
+      display: block;
+      border-radius: 13px;
+      background: rgba(0, 0, 0, 0.6);
+      height: 100%;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card img {
+    .rainbow-glow:hover > .card-inner {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
+
+    @keyframes rainbow-border {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card-inner img {
       width: 100%;
       display: block;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 13px 13px 0 0;
     }
 
     .card-text {
       padding: 15px;
+      text-align: left;
     }
 
     .card-text h3 {
@@ -87,13 +106,6 @@
       margin: 0;
       font-size: 14px;
       color: #ccc;
-    }
-
-    .neon-hover:hover {
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.8),
-                  0 0 30px rgba(0, 255, 255, 0.6),
-                  0 0 45px rgba(0, 255, 255, 0.4);
-      transform: scale(1.03);
     }
 
     footer {
@@ -111,27 +123,33 @@
     <h1>NNK Share Script</h1>
 
     <div class="card-grid">
-      <div class="card neon-hover" onclick="location.href='share-dahood.html'">
-        <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood">
-        <div class="card-text">
-          <h3>🔫 dahood Script</h3>
-          <p>autokill, ESP, tp, fun, v.v...</p>
+      <div class="rainbow-glow" onclick="location.href='share-dahood.html'">
+        <div class="card-inner">
+          <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood" />
+          <div class="card-text">
+            <h3>🔫 dahood Script</h3>
+            <p>autokill, ESP, tp, fun, v.v...</p>
+          </div>
         </div>
       </div>
 
-      <div class="card neon-hover" onclick="location.href='share-ink.html'">
-        <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink game">
-        <div class="card-text">
-          <h3>ink game Script (đã fix)</h3>
-          <p>autowin, tp, rebel, troll, v.v...</p>
+      <div class="rainbow-glow" onclick="location.href='share-ink.html'">
+        <div class="card-inner">
+          <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink game" />
+          <div class="card-text">
+            <h3>ink game Script (đã fix)</h3>
+            <p>autowin, tp, rebel, troll, v.v...</p>
+          </div>
         </div>
       </div>
 
-      <div class="card neon-hover" onclick="alert('Script này chưa ra mắt!')">
-        <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt">
-        <div class="card-text">
-          <h3>🚧 Script Mới</h3>
-          <p>Đang phát triển, chưa có link tải</p>
+      <div class="rainbow-glow" onclick="alert('mắt m bị điếc hay sao mà m bấm vào')">
+        <div class="card-inner">
+          <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt" />
+          <div class="card-text">
+            <h3>🚧 Script Mới</h3>
+            <p>Đang phát triển, chưa có link tải</p>
+          </div>
         </div>
       </div>
     </div>
@@ -142,9 +160,9 @@
   </div>
 
   <script>
-    document.querySelectorAll('.card').forEach(card => {
+    document.querySelectorAll('.rainbow-glow').forEach(card => {
       new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
+        if (entry.isIntersecting) entry.target.querySelector('.card-inner').style.opacity = 1;
       }, { threshold: 0.1 }).observe(card);
     });
   </script>
