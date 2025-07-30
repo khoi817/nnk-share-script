@@ -9,11 +9,11 @@
     body {
       font-family: Arial, sans-serif;
       color: white;
-      overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Ảnh nền cố định */
     .bg {
       position: fixed;
       top: 0; left: 0;
@@ -29,6 +29,7 @@
       z-index: -5;
     }
 
+    /* Tiêu đề */
     h1 {
       font-size: 42px;
       text-align: center;
@@ -47,6 +48,7 @@
       100% { background-position: 100% 50% }
     }
 
+    /* Layout grid */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -58,6 +60,7 @@
       z-index: 1;
     }
 
+    /* Viền bảy màu */
     .rainbow-glow {
       position: relative;
       padding: 2px;
@@ -67,20 +70,22 @@
       animation: rainbowBorder 12s linear infinite;
       overflow: hidden;
       opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      cursor: pointer;
+      transform: translateY(30px);
     }
 
     .rainbow-glow.show {
-      opacity: 1;
-      transform: scale(1);
+      animation: fadeInUp 0.6s ease forwards, rainbowBorder 12s linear infinite;
     }
 
     @keyframes rainbowBorder {
       0% { background-position: 0% 50% }
       50% { background-position: 100% 50% }
       100% { background-position: 0% 50% }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .card-inner {
@@ -139,7 +144,7 @@
       <div class="card-inner" onclick="location.href='share-dahood.html'">
         <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood" />
         <div class="card-text">
-          <h3>🔫 dahood Script(xk5ng)</h3>
+          <h3>🔫 dahood Script</h3>
           <p>autokill, ESP, tp, fun, v.v...</p>
         </div>
       </div>
@@ -149,24 +154,14 @@
       <div class="card-inner" onclick="location.href='share-ink.html'">
         <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink" />
         <div class="card-text">
-          <h3>ink game Script (sniff hub)</h3>
+          <h3>ink game Script (đã fix)</h3>
           <p>autowin, tp, rebel, troll, v.v...</p>
         </div>
       </div>
     </div>
 
     <div class="rainbow-glow">
-      <div class="card-inner" onclick="location.href='share-brainrot.html'">
-        <img src="https://i.postimg.cc/PJ5cZjTf/IMG-4658.jpg" alt="makai hub" />
-        <div class="card-text">
-          <h3>steal a brainrot Script(makai hub)</h3>
-          <p>ko bt nói gì</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="rainbow-glow">
-      <div class="card-inner" onclick="alert('fuckyoubitch917')">
+      <div class="card-inner" onclick="alert('Script này chưa ra mắt!')">
         <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="coming soon" />
         <div class="card-text">
           <h3>🚧 Script Mới</h3>
@@ -179,15 +174,17 @@
   <footer>ib báo lỗi: nnk.suy (syfm)</footer>
 
   <script>
-    document.querySelectorAll('.rainbow-glow').forEach(card => {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          card.classList.add('show');
-        } else {
-          card.classList.remove('show');
-        }
-      }, { threshold: 0.1 });
-      observer.observe(card);
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.rainbow-glow').forEach(card => {
+        const observer = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            card.classList.add('show');
+          } else {
+            card.classList.remove('show');
+          }
+        }, { threshold: 0.1 });
+        observer.observe(card);
+      });
     });
   </script>
 </body>
