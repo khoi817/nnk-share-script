@@ -5,40 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NNK Share Script</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
       color: white;
-      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') center/cover fixed no-repeat;
+      overflow-x: hidden;
       min-height: 100vh;
+      position: relative;
+    }
+
+    .bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') center/cover no-repeat;
+      z-index: -10;
     }
 
     .overlay {
-      position: absolute;
+      position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(2px);
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      padding: 40px 20px;
-      text-align: center;
+      z-index: -5;
     }
 
     h1 {
       font-size: 42px;
-      margin-bottom: 30px;
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      text-align: center;
+      margin: 30px 0;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-size: 400% 400%;
-      animation: rainbow 5s linear infinite;
+      animation: rainbowText 8s linear infinite;
+      position: relative;
+      z-index: 1;
     }
 
-    @keyframes rainbow {
+    @keyframes rainbowText {
       0% { background-position: 0% 50% }
       100% { background-position: 100% 50% }
     }
@@ -49,20 +53,23 @@
       gap: 20px;
       max-width: 1000px;
       margin: auto;
+      padding: 0 20px 50px;
+      position: relative;
+      z-index: 1;
     }
 
     .rainbow-glow {
       position: relative;
       padding: 2px;
       border-radius: 15px;
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 1400% 1400%;
-      animation: rainbow-border 8s linear infinite;
+      animation: rainbowBorder 12s linear infinite;
       overflow: hidden;
-      cursor: pointer;
       opacity: 0;
-      transform: scale(0.8);
+      transform: scale(0.9);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      cursor: pointer;
     }
 
     .rainbow-glow.show {
@@ -70,7 +77,7 @@
       transform: scale(1);
     }
 
-    @keyframes rainbow-border {
+    @keyframes rainbowBorder {
       0% { background-position: 0% 50% }
       50% { background-position: 100% 50% }
       100% { background-position: 0% 50% }
@@ -85,7 +92,7 @@
 
     .rainbow-glow:hover .card-inner {
       transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
 
     .card-inner img {
@@ -116,54 +123,71 @@
       text-align: center;
       font-size: 13px;
       color: #aaa;
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+  <div class="bg"></div>
   <div class="overlay"></div>
-  <div class="container">
-    <h1>NNK Share Script</h1>
-    <div class="card-grid">
 
-      <div class="rainbow-glow" onclick="location.href='share-dahood.html'">
-        <div class="card-inner">
-          <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood" />
-          <div class="card-text">
-            <h3>🔫 dahood Script</h3>
-            <p>autokill, ESP, tp, fun, v.v...</p>
-          </div>
+  <h1>NNK Share Script</h1>
+
+  <div class="card-grid">
+    <div class="rainbow-glow">
+      <div class="card-inner" onclick="location.href='share-dahood.html'">
+        <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood" />
+        <div class="card-text">
+          <h3>🔫 dahood Script(xk5ng)</h3>
+          <p>autokill, ESP, tp, fun, v.v...</p>
         </div>
       </div>
-
-      <div class="rainbow-glow" onclick="location.href='share-ink.html'">
-        <div class="card-inner">
-          <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink game" />
-          <div class="card-text">
-            <h3>ink game Script (đã fix)</h3>
-            <p>autowin, tp, rebel, troll, v.v...</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rainbow-glow" onclick="alert('Script này chưa ra mắt!')">
-        <div class="card-inner">
-          <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt" />
-          <div class="card-text">
-            <h3>🚧 Script Mới</h3>
-            <p>Đang phát triển, chưa có link tải</p>
-          </div>
-        </div>
-      </div>
-
     </div>
-    <footer>ib báo lỗi: nnk.suy (syfm)</footer>
+
+    <div class="rainbow-glow">
+      <div class="card-inner" onclick="location.href='share-ink.html'">
+        <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink" />
+        <div class="card-text">
+          <h3>ink game Script (sniff hub)</h3>
+          <p>autowin, tp, rebel, troll, v.v...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rainbow-glow">
+      <div class="card-inner" onclick="location.href='share-brainrot.html'">
+        <img src="https://i.postimg.cc/PJ5cZjTf/IMG-4658.jpg" alt="makai hub" />
+        <div class="card-text">
+          <h3>steal a brainrot Script(makai hub)</h3>
+          <p>ko bt nói gì</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rainbow-glow">
+      <div class="card-inner" onclick="alert('fuckyoubitch917')">
+        <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="coming soon" />
+        <div class="card-text">
+          <h3>🚧 Script Mới</h3>
+          <p>Đang phát triển, chưa có link tải</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <footer>ib báo lỗi: nnk.suy (syfm)</footer>
 
   <script>
     document.querySelectorAll('.rainbow-glow').forEach(card => {
-      new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
-      }, { threshold: 0.1 }).observe(card);
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          card.classList.add('show');
+        } else {
+          card.classList.remove('show');
+        }
+      }, { threshold: 0.1 });
+      observer.observe(card);
     });
   </script>
 </body>
