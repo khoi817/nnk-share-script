@@ -9,8 +9,8 @@
     body {
       font-family: Arial, sans-serif;
       color: white;
-      min-height: 100vh;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     /* Ảnh nền cố định */
@@ -48,7 +48,6 @@
       100% { background-position: 100% 50% }
     }
 
-    /* Layout grid */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -60,32 +59,30 @@
       z-index: 1;
     }
 
-    /* Viền bảy màu */
+    /* Viền bảy màu + hiệu ứng slide in */
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px); }
+      to   { transform: translateX(0); }
+    }
+
     .rainbow-glow {
-      position: relative;
       padding: 2px;
       border-radius: 15px;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 1400% 1400%;
       animation: rainbowBorder 12s linear infinite;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(30px);
+      transform: translateX(-50px); /* bắt đầu trượt trái */
     }
 
     .rainbow-glow.show {
-      animation: fadeInUp 0.6s ease forwards, rainbowBorder 12s linear infinite;
+      animation: slideInLeft 0.6s ease forwards, rainbowBorder 12s linear infinite;
     }
 
     @keyframes rainbowBorder {
       0% { background-position: 0% 50% }
       50% { background-position: 100% 50% }
       100% { background-position: 0% 50% }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
 
     .card-inner {
@@ -140,6 +137,7 @@
   <h1>NNK Share Script</h1>
 
   <div class="card-grid">
+
     <div class="rainbow-glow">
       <div class="card-inner" onclick="location.href='share-dahood.html'">
         <img src="https://i.postimg.cc/JhKtXpgF/IMG-4589.jpg" alt="dahood" />
@@ -152,23 +150,33 @@
 
     <div class="rainbow-glow">
       <div class="card-inner" onclick="location.href='share-ink.html'">
-        <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink" />
+        <img src="https://i.postimg.cc/0jpVjCwQ/IMG-4588.jpg" alt="ink game" />
         <div class="card-text">
           <h3>ink game Script (đã fix)</h3>
           <p>autowin, tp, rebel, troll, v.v...</p>
         </div>
       </div>
     </div>
+    <div class="rainbow-glow">
+      <div class="card-inner" onclick="location.href='share-brainrot.html'">
+        <img src="https://i.postimg.cc/PJ5cZjTf/IMG-4658.jpg" alt="makai hub" />
+        <div class="card-text">
+          <h3>steal a brainrot Script(makai hub)</h3>
+          <p>ko bt nói gì</p>
+        </div>
+      </div>
+    </div>
 
     <div class="rainbow-glow">
       <div class="card-inner" onclick="alert('Script này chưa ra mắt!')">
-        <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="coming soon" />
+        <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt" />
         <div class="card-text">
           <h3>🚧 Script Mới</h3>
           <p>Đang phát triển, chưa có link tải</p>
         </div>
       </div>
     </div>
+
   </div>
 
   <footer>ib báo lỗi: nnk.suy (syfm)</footer>
