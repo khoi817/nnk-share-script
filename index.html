@@ -13,7 +13,7 @@
       min-height: 100vh;
     }
 
-    /* Ảnh nền cố định */
+    /* Nền cố định + overlay */
     .bg {
       position: fixed;
       top: 0; left: 0;
@@ -59,10 +59,16 @@
       z-index: 1;
     }
 
-    /* Viền bảy màu + hiệu ứng slide in */
-    @keyframes slideInLeft {
-      from { transform: translateX(-50px); }
-      to   { transform: translateX(0); }
+    /* Hiệu ứng rainbow border + smooth slide up */
+    @keyframes smoothSlideUp {
+      0%   { transform: translateY(40px) scale(0.95); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    @keyframes rainbowBorder {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
     }
 
     .rainbow-glow {
@@ -70,19 +76,12 @@
       border-radius: 15px;
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 1400% 1400%;
-      animation: rainbowBorder 12s linear infinite;
       overflow: hidden;
-      transform: translateX(-50px); /* bắt đầu trượt trái */
+      transform: translateY(40px) scale(0.95);
     }
 
     .rainbow-glow.show {
-      animation: slideInLeft 0.6s ease forwards, rainbowBorder 12s linear infinite;
-    }
-
-    @keyframes rainbowBorder {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
+      animation: smoothSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards, rainbowBorder 12s linear infinite;
     }
 
     .card-inner {
@@ -166,7 +165,6 @@
         </div>
       </div>
     </div>
-
     <div class="rainbow-glow">
       <div class="card-inner" onclick="alert('Script này chưa ra mắt!')">
         <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="Chưa ra mắt" />
