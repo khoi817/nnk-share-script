@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NNK Share Script</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') center/cover fixed no-repeat;
+      color: white;
+      min-height: 100vh;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 42px;
+      text-align: center;
+      margin: 30px 20px;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 350% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowText 5s linear infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      z-index: 10;
+      position: relative;
+      cursor: pointer;
+    }
+
+    @keyframes rainbowText {
+      0% { background-position: 0% 50% }
+      100% { background-position: 100% 50% }
+    }
+
+    .container {
+      position: relative;
+      max-width: 400px;
+      width: 90%;
+      margin: auto;
+      margin-bottom: 50px;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -3px; left: -3px; right: -3px; bottom: -3px;
+      border-radius: 23px;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 1400% 1400%;
+      animation: rainbowBorder 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rainbowBorder {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+
+    .main-img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      animation: zoomInOut 6s ease-in-out infinite;
+      transition: transform 0.3s ease;
+      display: block;
+      margin-inline: auto;
+    }
+
+    .main-img:hover { transform: scale(1.05); }
+
+    @keyframes zoomInOut {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .nut-vuong {
+      font-size: 20px;
+      padding: 14px 30px;
+      margin: 15px auto;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: block;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .nut-vuong:hover {
+      animation: rainbowBtn 3s linear infinite;
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    }
+
+    @keyframes rainbowBtn {
+      0%   { background-color: red; }
+      14%  { background-color: orange; }
+      28%  { background-color: yellow; }
+      42%  { background-color: green; }
+      57%  { background-color: blue; }
+      71%  { background-color: indigo; }
+      85%  { background-color: violet; }
+      100% { background-color: red; }
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 30px auto;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .progress-bar {
+      height: 50px;
+      width: 0%;
+      background: linear-gradient(to right, #4caf50, #8bc34a);
+      text-align: center;
+      line-height: 50px;
+      color: white;
+      font-weight: bold;
+      transition: width 0.5s ease;
+    }
+
+    #nut-tai {
+      display: none;
+      font-size: 20px;
+      background: green;
+      color: white;
+      padding: 15px 40px;
+      margin-top: 25px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .loading-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tiêu đề -->
+  <h1 onclick="location.href='index.html'">NNK Share Script</h1>
+
+  <!-- Glass Box -->
+  <div class="container">
+    <img class="main-img" src="https://i.postimg.cc/5NDNqnRB/IMG-4783.jpg" alt="ảnh game">
+
+    <button class="nut-vuong" onclick="nhiemVuHoanThanh(this, 'https://www.tiktok.com/@nnk.suy')">Tìm video bất kỳ</button>
+    <button class="nut-vuong" onclick="nhiemVuHoanThanh(this, 'https://www.tiktok.com/@nnk.suy')">Follow</button>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="thanhTienTrinh">0/2 nhiệm vụ</div>
+    </div>
+
+    <button id="nut-tai" onclick="location.href='https://link4m.com/bl5QeIg'">✅ Vượt link</button>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loadingOverlay">Đang kiểm tra nhiệm vụ...</div>
+
+  <script>
+    let done = 0;
+    const bar = document.getElementById('thanhTienTrinh');
+    const nutTai = document.getElementById('nut-tai');
+    const loading = document.getElementById('loadingOverlay');
+
+    function updateBar() {
+      const pt = (done / 2) * 100;
+      bar.style.width = pt + '%';
+      bar.innerText = `${done}/2 nhiệm vụ`;
+      if (done >= 2) nutTai.style.display = 'block';
+    }
+
+    function nhiemVuHoanThanh(btn, link) {
+      if (btn.dataset.done === 'true') return;
+      btn.dataset.done = 'true';
+      window.open(link, '_blank');
+      btn.innerText = 'Đang xử lý nhiệm vụ...';
+      btn.disabled = true;
+      loading.classList.add('show');
+
+      setTimeout(() => {
+        done++;
+        updateBar();
+        loading.classList.remove('show');
+        btn.innerText = '✅ Hoàn thành';
+      }, 6000);
+    }
+  </script>
+</body>
+</html>
