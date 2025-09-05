@@ -4,129 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NNK Share Script</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      color: white;
-      overflow-x: hidden;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: url('https://i.postimg.cc/k52BQMS9/IMG-4171.jpg') center/cover no-repeat;
-      z-index: -10;
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: -5;
-    }
-
-    h1 {
-      font-size: 42px;
-      text-align: center;
-      margin: 30px 0;
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbowText 8s linear infinite;
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes rainbowText {
-      0% { background-position: 0% 50% }
-      100% { background-position: 100% 50% }
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
-      padding: 0 20px 50px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .rainbow-glow {
-      position: relative;
-      padding: 2px;
-      border-radius: 15px;
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 1400% 1400%;
-      animation: rainbowBorder 12s linear infinite;
-      overflow: hidden;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      cursor: pointer;
-    }
-
-    .rainbow-glow.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    @keyframes rainbowBorder {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
-    }
-
-    .card-inner {
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 13px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .rainbow-glow:hover .card-inner {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
-
-    .card-inner img {
-      width: 100%;
-      display: block;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-    }
-
-    .card-text {
-      padding: 15px;
-      text-align: left;
-    }
-
-    .card-text h3 {
-      margin: 0 0 5px;
-      font-size: 18px;
-      color: #fff;
-    }
-
-    .card-text p {
-      margin: 0;
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      font-size: 13px;
-      color: #aaa;
-      position: relative;
-      z-index: 1;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="bg"></div>
@@ -175,7 +53,6 @@
       </div>
     </div>
 
-
     <div class="rainbow-glow">
       <div class="card-inner" onclick="alert('fuckyoubitch917')">
         <img src="https://i.postimg.cc/cJPLGJfS/IMG-4632.jpg" alt="coming soon" />
@@ -189,17 +66,6 @@
 
   <footer>ib báo lỗi: nnk.suy (syfm)</footer>
 
-  <script>
-    document.querySelectorAll('.rainbow-glow').forEach(card => {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          card.classList.add('show');
-        } else {
-          card.classList.remove('show');
-        }
-      }, { threshold: 0.1 });
-      observer.observe(card);
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
